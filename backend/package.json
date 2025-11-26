@@ -1,0 +1,22 @@
+{
+  "name": "debate-speech-coach-backend",
+  "version": "1.0.0",
+  "description": "Speech Analyzer and Coach - Backend API",
+  "main": "main.py",
+  "scripts": {
+    "start": "./venv/bin/python main.py --provider gemini",
+    "dev": "./venv/bin/python main.py --provider gemini",
+    "dev:gemini": "./venv/bin/python main.py --provider gemini",
+    "dev:openai": "./venv/bin/python main.py --provider openai",
+    "dev:claude": "./venv/bin/python main.py --provider anthropic",
+    "dev:anthropic": "./venv/bin/python main.py --provider anthropic"
+  },
+  "keywords": [
+    "speech-analysis",
+    "debate-coach",
+    "ai",
+    "fastapi"
+  ],
+  "author": "",
+  "license": "MIT"
+}
