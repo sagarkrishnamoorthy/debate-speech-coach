@@ -1,6 +1,15 @@
 # Speech Analyzer and Coach 🎤
 
+[![Python 3.9+](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://www.python.org/downloads/)
+[![Node.js 18+](https://img.shields.io/badge/Node.js-18+-green.svg)](https://nodejs.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.115-teal.svg)](https://fastapi.tiangolo.com/)
+[![React 19](https://img.shields.io/badge/React-19-blue.svg)](https://react.dev/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Code style: black](https://img.shields.io/badge/Code%20style-black-000000.svg)](https://github.com/psf/black)
+
 An AI-powered speech analysis tool designed for debate and public speaking improvement. Analyzes pace, filler words, argument structure, and vocabulary to provide detailed feedback and scoring.
+
+**[Quick Start](#getting-started)** • **[Documentation](#documentation)** • **[Contributing](#contributing)** • **[License](#license)**
 
 ## Features
 
@@ -44,7 +53,7 @@ Switch providers via command line or API selection!
 ## Project Structure
 
 ```
-debate_speech_coach/
+debate-speech-coach/
 ├── backend/
 │   ├── main.py              # FastAPI application
 │   ├── requirements.txt     # Python dependencies
@@ -77,6 +86,13 @@ debate_speech_coach/
     │       └── AnalysisDetails.tsx
     └── package.json
 ```
+
+## Documentation
+
+- **[Quick Start Guide](QUICKSTART.md)** - Setup and first steps
+- **[Architecture Guide](ARCHITECTURE.md)** - System design and components
+- **[Contributing Guide](CONTRIBUTING.md)** - How to contribute
+- **[API Reference](QUICKSTART.md#api-endpoints)** - Endpoint documentation
 
 ## Getting Started
 
@@ -194,42 +210,41 @@ python main.py --provider gemini --port 8000 --host 0.0.0.0
 
 For detailed architecture information, see [ARCHITECTURE.md](ARCHITECTURE.md).
 
-## Requirements
+## Contributing
 
-### Backend
-- Python 3.9+
-- FFmpeg (for audio conversion)
-- Internet connection (for AI APIs)
+We welcome contributions! Please read [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on how to get started.
 
-### Frontend
-- Node.js 18+
-- Modern browser with MediaRecorder API support
+### Quick Contribution Steps
 
-## Limitations
+1. **Fork** the repository
+2. **Create** a feature branch (`git checkout -b feature/amazing-feature`)
+3. **Make** your changes with clear commit messages
+4. **Add** tests for new functionality
+5. **Submit** a pull request with a description of changes
 
-- Maximum audio duration: 10 minutes (configurable)
-- Transcription requires clear audio quality
-- AI analysis quality depends on speech clarity and length
-- Best results with speeches longer than 1 minute
+### Code Standards
 
-## Future Enhancements
-
-- [ ] Database integration for persistent storage
-- [ ] User authentication and profiles
-- [ ] Historical trend analysis and charts
-- [ ] Export reports as PDF
-- [ ] Batch processing for multiple speeches
-- [ ] Speaker identification in multi-speaker recordings
-- [ ] Real-time analysis during recording
-- [ ] Custom vocabulary and terminology databases
+- **Python**: Follow [PEP 8](https://pep8.org/) with [Black](https://github.com/psf/black) formatting
+- **TypeScript**: Follow [ESLint](https://eslint.org/) config in `frontend/`
+- **Documentation**: Keep README.md and QUICKSTART.md updated
+- **Tests**: Add tests for new features
 
 ## License
 
-MIT License - see LICENSE file for details
+MIT License - see [LICENSE](LICENSE) file for details
 
 ## Support
 
-For issues, questions, or contributions, please open an issue on GitHub.
+For issues, questions, or contributions:
+- 📝 **Issues**: [GitHub Issues](https://github.com/sagarkrishnamoorthy/debate-speech-coach/issues)
+- 💬 **Discussions**: [GitHub Discussions](https://github.com/sagarkrishnamoorthy/debate-speech-coach/discussions)
+- 🤝 **Contributing**: See [CONTRIBUTING.md](CONTRIBUTING.md)
+
+## Acknowledgments
+
+- Built with [FastAPI](https://fastapi.tiangolo.com/)
+- Powered by [Google Gemini](https://ai.google.dev/), [OpenAI](https://openai.com/), and [Anthropic](https://www.anthropic.com/)
+- Frontend with [React](https://react.dev/) and [Tailwind CSS](https://tailwindcss.com/)
 
 ---
 
