@@ -53,8 +53,13 @@ filler_word_analyzer = FillerWordAnalyzer()
 
 
 @app.get("/")
-async def root():
-    """Root endpoint."""
+async def root() -> dict:
+    """
+    Root endpoint providing API information.
+    
+    Returns:
+        dict: API metadata and available endpoints
+    """
     return {
         "message": "Speech Analyzer and Coach API",
         "version": "1.0.0",
@@ -70,13 +75,18 @@ async def root():
 
 @app.get("/favicon.ico")
 async def favicon():
-    """Return 204 No Content for favicon requests."""
+    """Return 204 No Content for favicon requests to prevent 404 errors."""
     return JSONResponse(status_code=204, content={})
 
 
 @app.get("/api/health")
-async def health_check():
-    """Health check endpoint."""
+async def health_check() -> dict:
+    """
+    Health check endpoint for monitoring service status.
+    
+    Returns:
+        dict: Service health status and configuration
+    """
     return {
         "status": "healthy",
         "service": "Speech Analyzer API",
@@ -88,15 +98,30 @@ async def health_check():
 async def upload_speech(
     file: UploadFile = File(...),
     background_tasks: BackgroundTasks = None
-):
+) -> dict:
     """
     Upload a speech audio file for analysis.
     
     Args:
-        file: Audio file (mp3, wav, ogg, m4a, flac)
+        file: Audio file in supported format (MP3, WAV, OGG, M4A, FLAC)
+        background_tasks: Background task scheduler
         
     Returns:
-        Analysis ID for tracking
+        dict: Analysis ID for tracking the uploaded speech
+        
+    Raises:
+        HTTPException: If file format is invalid or file size exceeds limits
+        
+    Example:
+        POST /api/speech/upload
+        Content-Type: multipart/form-data
+        
+        Response:
+        {
+            "analysis_id": "550e8400-e29b-41d4-a716-446655440000",
+            "status": "uploaded",
+            "message": "Speech uploaded successfully"
+        }
     """
     # Validate file type (outside try-except so HTTPException can propagate)
     allowed_extensions = [".mp3", ".wav", ".ogg", ".m4a", ".flac", ".webm"]

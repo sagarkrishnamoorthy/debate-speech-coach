@@ -518,6 +518,193 @@ useEffect(() => {
 - [ ] Enable rate limiting
 - [ ] Set up monitoring/alerting
 
+## Contributing to the Architecture
+
+### Before Making Changes
+
+1. **Understand the Current Design**: Read this document and review related code
+2. **Check Existing Issues**: Look for similar feature requests or discussions
+3. **Consider Alternatives**: Multiple approaches may work - discuss tradeoffs
+4. **Plan Communication**: Outline your changes in an issue before coding
+
+### Code Organization Principles
+
+- **Modularity**: Each module has a single responsibility
+- **Abstraction**: Hide complexity behind clean interfaces
+- **Type Safety**: Use type hints and Pydantic models
+- **Documentation**: Document the "why", not just the "what"
+- **Testing**: Cover critical paths and error scenarios
+
+### Adding Features
+
+#### Example: Adding a New Analyzer
+
+**Step 1: Define the Data Model** (`src/models/speech.py`)
+```python
+class NewAnalysisResult(BaseModel):
+    """Analysis results for new feature."""
+    metric1: float
+    metric2: str
+    feedback: str
+```
+
+**Step 2: Create Analyzer Class** (`src/analyzers/new_feature.py`)
+```python
+"""Analysis for new feature."""
+
+class NewFeatureAnalyzer:
+    """Analyze new feature of speech."""
+    
+    def analyze(self, transcription: str) -> NewAnalysisResult:
+        """Implement analysis logic."""
+        pass
+```
+
+**Step 3: Integrate into Pipeline** (`main.py`)
+```python
+# Import
+from src.analyzers.new_feature import NewFeatureAnalyzer
+
+# Initialize
+new_analyzer = NewFeatureAnalyzer()
+
+# Use in analysis
+result = new_analyzer.analyze(transcription)
+```
+
+**Step 4: Update Frontend** (if needed)
+```typescript
+// Add to SpeechAnalysis type in api.ts
+// Create component to display results
+// Add to Analysis Details page
+```
+
+**Step 5: Test & Document**
+- Write unit tests for analyzer logic
+- Update ARCHITECTURE.md with new analyzer description
+- Update README if it's a major feature
+
+#### Example: Adding a New AI Provider
+
+**Step 1: Create Provider Class** (`src/ai/new_provider.py`)
+```python
+from .base import BaseAIProvider
+from ..models.speech import ArgumentStructure, WordChoiceAnalysis
+
+class NewProviderProvider(BaseAIProvider):
+    """Integration with NewProvider AI service."""
+    
+    def __init__(self, api_key: str):
+        self.api_key = api_key
+        # Initialize client
+    
+    def analyze_argument_structure(self, text: str) -> ArgumentStructure:
+        # Implement analysis
+        pass
+    
+    # Implement other required methods
+```
+
+**Step 2: Update Factory** (`src/ai/factory.py`)
+```python
+class AIProviderFactory:
+    @staticmethod
+    def create(provider: AIProvider) -> BaseAIProvider:
+        if provider == AIProvider.NEW_PROVIDER:
+            return NewProviderProvider(settings.new_provider_api_key)
+        # ... other providers
+```
+
+**Step 3: Update Settings** (`src/config.py`)
+```python
+class Settings(BaseSettings):
+    new_provider_api_key: str = ""
+    new_provider_model: str = "default-model"
+```
+
+**Step 4: Update Models** (`src/models/speech.py`)
+```python
+class AIProvider(str, Enum):
+    GEMINI = "gemini"
+    OPENAI = "openai"
+    ANTHROPIC = "anthropic"
+    NEW_PROVIDER = "new_provider"  # Add new provider
+```
+
+**Step 5: Update Configuration Template** (`.env.example`)
+```env
+# Add new API key placeholder
+NEW_PROVIDER_API_KEY=your_key_here
+NEW_PROVIDER_MODEL=default-model
+```
+
+### Code Review Checklist
+
+Before submitting a PR, ensure:
+
+- [ ] **Type Hints**: All functions have return types
+- [ ] **Docstrings**: Public functions/classes documented
+- [ ] **Error Handling**: Errors caught and logged appropriately
+- [ ] **Tests**: New functionality tested
+- [ ] **Documentation**: Code comments for complex logic
+- [ ] **No Secrets**: No API keys or passwords in code
+- [ ] **Consistent Style**: Follows project conventions
+- [ ] **Logging**: Important operations logged at appropriate levels
+
+### Performance Considerations
+
+When adding features:
+
+1. **Async/Await**: Use async for I/O operations (API calls, file I/O)
+2. **Background Tasks**: Long operations should run in background
+3. **Caching**: Avoid redundant API calls when possible
+4. **Memory**: Process files in streaming mode when possible
+5. **Database Queries**: Minimize queries (future consideration)
+
+### Backward Compatibility
+
+- Maintain existing API endpoints
+- Don't change model field names without migration
+- Provide deprecation warnings before removing features
+- Document breaking changes clearly
+
+### Performance Benchmarking
+
+For performance-sensitive changes:
+
+```python
+import time
+
+start = time.perf_counter()
+result = perform_operation()
+duration = time.perf_counter() - start
+logger.info(f"Operation took {duration:.2f}s")
+```
+
+### Debugging Tips
+
+**Enable Debug Logging**:
+```python
+import logging
+logging.basicConfig(level=logging.DEBUG)
+```
+
+**Test with Different Providers**:
+```bash
+python main.py --provider gemini
+python main.py --provider openai
+python main.py --provider anthropic
+```
+
+**Test with Sample Audio**: Create test audio files of varying quality and duration.
+
+**Frontend Debugging**:
+- Use React DevTools browser extension
+- Check browser console for API errors
+- Network tab to inspect requests/responses
+
 ---
 
 **Architecture designed for clarity, extensibility, and maintainability**
+
+For questions or suggestions, see [CONTRIBUTING.md](CONTRIBUTING.md)
