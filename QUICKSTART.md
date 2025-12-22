@@ -37,7 +37,7 @@ You'll need at least one AI provider API key:
 
 ### 1. Navigate to Backend Directory
 ```bash
-cd debate_speech_coach/backend
+cd debate-speech-coach/backend
 ```
 
 ### 2. Create Virtual Environment (Recommended)
@@ -97,7 +97,7 @@ The backend will start at `http://localhost:8000` (or your specified port).
 
 ### 1. Open New Terminal and Navigate to Frontend
 ```bash
-cd debate_speech_coach/frontend
+cd debate-speech-coach/frontend
 ```
 
 ### 2. Install Dependencies

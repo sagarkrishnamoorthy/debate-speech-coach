@@ -44,7 +44,7 @@ Switch providers via command line or API selection!
 ## Project Structure
 
 ```
-debate_speech_coach/
+debate-speech-coach/
 ├── backend/
 │   ├── main.py              # FastAPI application
 │   ├── requirements.txt     # Python dependencies
