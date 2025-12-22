@@ -1,7 +1,4 @@
 """Main FastAPI application for Speech Analyzer and Coach."""
-# Python 3.14 compatibility
-from src import compat
-
 import argparse
 from fastapi import FastAPI, File, UploadFile, HTTPException, BackgroundTasks, Query
 from fastapi.middleware.cors import CORSMiddleware
