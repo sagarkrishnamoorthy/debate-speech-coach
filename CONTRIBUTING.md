@@ -233,8 +233,8 @@ When making changes that affect functionality:
 
 ### Before Submitting
 
-- Check [existing issues](https://github.com/sagarkrishnamoorthy/debate-speech-coach/issues)
-- Check [discussions](https://github.com/sagarkrishnamoorthy/debate-speech-coach/discussions)
+- Check [existing issues](https://github.com/arjvid805/debate-speech-coach/issues)
+- Check [discussions](https://github.com/arjvid805/debate-speech-coach/discussions)
 - Try reproducing with the latest code
 
 ### Bug Report Template
@@ -341,7 +341,7 @@ debate-speech-coach/
 
 ## Questions?
 
-- 💬 **Ask in Discussions:** [GitHub Discussions](https://github.com/sagarkrishnamoorthy/debate-speech-coach/discussions)
+- 💬 **Ask in Discussions:** [GitHub Discussions](https://github.com/arjvid805/debate-speech-coach/discussions)
 - 📧 **Email:** (contact info if available)
 - 📖 **Read the Docs:** [ARCHITECTURE.md](ARCHITECTURE.md)
 

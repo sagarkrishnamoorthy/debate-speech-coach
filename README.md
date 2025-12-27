@@ -236,8 +236,8 @@ MIT License - see [LICENSE](LICENSE) file for details
 ## Support
 
 For issues, questions, or contributions:
-- 📝 **Issues**: [GitHub Issues](https://github.com/sagarkrishnamoorthy/debate-speech-coach/issues)
-- 💬 **Discussions**: [GitHub Discussions](https://github.com/sagarkrishnamoorthy/debate-speech-coach/discussions)
+- 📝 **Issues**: [GitHub Issues](https://github.com/arjvid805/debate-speech-coach/issues)
+- 💬 **Discussions**: [GitHub Discussions](https://github.com/arjvid805/debate-speech-coach/discussions)
 - 🤝 **Contributing**: See [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## Acknowledgments
