@@ -1,54 +1,49 @@
 # Speech Analyzer and Coach 🎤
 
-[![Python 3.9+](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://www.python.org/downloads/)
-[![Node.js 18+](https://img.shields.io/badge/Node.js-18+-green.svg)](https://nodejs.org/)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.115-teal.svg)](https://fastapi.tiangolo.com/)
-[![React 19](https://img.shields.io/badge/React-19-blue.svg)](https://react.dev/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Code style: black](https://img.shields.io/badge/Code%20style-black-000000.svg)](https://github.com/psf/black)
+A web app for analyzing debate speeches and public speaking. Records or uploads audio, transcribes it, and provides feedback on pace, filler words, argument structure, and vocabulary.
 
-An AI-powered speech analysis tool designed for debate and public speaking improvement. Analyzes pace, filler words, argument structure, and vocabulary to provide detailed feedback and scoring.
+## What It Does
 
-**[Quick Start](#getting-started)** • **[Documentation](#documentation)** • **[Contributing](#contributing)** • **[License](#license)**
+The app analyzes speeches across four areas and gives a score out of 100:
 
-## Features
+**Pace Analysis (25 points)**
+- Measures words per minute
+- Optimal range is 120-160 WPM
+- Tells you if you're speaking too fast or too slow
 
-### 🎯 Core Analysis
-- **Pace Analysis**: Measures words per minute and provides feedback on speaking speed
-- **Filler Word Detection**: Identifies and counts filler words like "um", "like", "you know", etc.
-- **Argument Structure**: Evaluates thesis clarity, supporting points, and logical flow
-- **Word Choice Analysis**: Suggests stronger alternatives and identifies repetitive language
+**Filler Word Detection (25 points)**
+- Counts "um," "like," "you know," and similar words
+- Helps identify patterns to work on
 
-### 📊 Comprehensive Scoring
-- **100-Point Scale**: Clear scoring with detailed breakdown
-- **Four Components**: Pace (25pts), Clarity (25pts), Structure (25pts), Vocabulary (25pts)
-- **Detailed Explanations**: Understand exactly why you received your score
-- **Actionable Feedback**: Specific strengths and areas for improvement
+**Argument Structure (25 points)**
+- Evaluates thesis clarity
+- Checks if supporting points connect logically
+- Uses AI to assess overall flow
 
-### 🤖 Multi-Model AI Support
-- **Gemini** (Google) - Default provider
-- **GPT** (OpenAI) - Optional
-- **Claude** (Anthropic) - Optional
+**Word Choice Analysis (25 points)**
+- Identifies repetitive or weak language
+- Suggests stronger alternatives
+- Flags vague words that don't add value
 
-Switch providers via command line or API selection!
+Each category includes specific feedback explaining the score and areas to improve.
 
-### 🎙️ Flexible Input
-- **Live Recording**: Record directly in the browser
-- **File Upload**: Support for MP3, WAV, OGG, M4A, FLAC formats
+## Why I Built This
+
+I'm on the speech and debate team, and coaches can't give feedback on every practice round. I wanted a tool that could analyze speeches when I'm practicing at home, so I could see what to work on between tournaments.
+
+The main challenge was figuring out what kind of feedback actually helps debaters improve. Early versions of the scoring were too harsh and felt discouraging. After testing with my brother and adjusting based on feedback, the current system is more constructive while still being honest.
 
 ## Tech Stack
 
-### Backend
-- **FastAPI**: Modern Python web framework
-- **SpeechRecognition**: Audio transcription
-- **Pydantic**: Data validation and settings
-- **Multi-AI Integration**: Gemini, OpenAI, Anthropic APIs
+**Backend**
+- FastAPI (Python web framework)
+- SpeechRecognition library for audio transcription
+- Multi-AI provider support: Google Gemini, OpenAI GPT, Anthropic Claude
 
-### Frontend
-- **React 19 + TypeScript**: Modern UI framework
-- **Recharts**: Data visualization for score breakdown
-- **Axios**: API communication
-- **Tailwind CSS**: Styling (via inline classes)
+**Frontend**
+- React 19 with TypeScript
+- Recharts for score visualization
+- Standard CSS for styling
 
 ## Project Structure
 
@@ -56,196 +51,43 @@ Switch providers via command line or API selection!
 debate-speech-coach/
 ├── backend/
 │   ├── main.py              # FastAPI application
-│   ├── requirements.txt     # Python dependencies
-│   ├── .env.example        # Environment template
 │   ├── src/
-│   │   ├── config.py       # Configuration management
-│   │   ├── models/         # Pydantic data models
-│   │   │   └── speech.py
-│   │   ├── services/       # Business logic
-│   │   │   └── transcription.py
-│   │   ├── analyzers/      # Analysis modules
-│   │   │   ├── pace.py
-│   │   │   └── filler_words.py
-│   │   └── ai/            # AI provider integrations
-│   │       ├── base.py
-│   │       ├── gemini_provider.py
-│   │       ├── openai_provider.py
-│   │       ├── anthropic_provider.py
-│   │       └── factory.py
-│   ├── uploads/           # Uploaded audio files
-│   └── logs/             # Application logs
+│   │   ├── analyzers/       # Pace and filler word detection
+│   │   ├── ai/              # AI provider integrations
+│   │   ├── models/          # Data models
+│   │   └── services/        # Transcription service
+│   └── uploads/             # Temporary audio files
 └── frontend/
-    ├── src/
-    │   ├── App.tsx          # Main application
-    │   ├── services/
-    │   │   └── api.ts       # API client
-    │   └── components/
-    │       ├── AudioRecorder.tsx
-    │       ├── ScoreDisplay.tsx
-    │       └── AnalysisDetails.tsx
-    └── package.json
+    └── src/
+        ├── App.tsx          # Main application
+        ├── components/      # React components
+        └── services/        # API client
 ```
-
-## Documentation
-
-- **[Quick Start Guide](QUICKSTART.md)** - Setup and first steps
-- **[Architecture Guide](ARCHITECTURE.md)** - System design and components
-- **[Contributing Guide](CONTRIBUTING.md)** - How to contribute
-- **[API Reference](QUICKSTART.md#api-endpoints)** - Endpoint documentation
 
 ## Getting Started
 
-See [QUICKSTART.md](QUICKSTART.md) for detailed setup instructions.
+See [QUICKSTART.md](QUICKSTART.md) for setup instructions.
 
-### Quick Start
+Requirements:
+- Python 3.9+
+- Node.js 18+
+- FFmpeg (for audio processing)
+- AI provider API key (Gemini is free and works well)
 
-**Backend:**
-```bash
-cd backend
-cp .env.example .env
-# Add your API keys to .env
-pip install -r requirements.txt
-npm start
-# OR: npm run dev:gemini, npm run dev:openai, npm run dev:claude
-```
+## What I Learned
 
-**Frontend:**
-```bash
-cd frontend
-npm install
-npm start
-```
+Building this taught me about product decisions and trade-offs. You can't implement every feature idea—you have to focus on what actually matters for users. I went through several iterations on the scoring system before finding something that balanced being helpful with being honest.
 
-Visit `http://localhost:3000` to start analyzing speeches!
+I also learned that getting early feedback matters. Testing with real users (my brother and debate teammates) helped me catch problems I wouldn't have noticed on my own, like the initial scoring being too discouraging.
 
-## Usage
+## Current Status
 
-1. **Select AI Provider**: Choose between Gemini, GPT, or Claude
-2. **Input Speech**: Either record live or upload an audio file
-3. **Analyze**: Click "Analyze Speech" to start processing
-4. **Review Results**: 
-   - Overall score (1-100) with breakdown
-   - Detailed pace analysis
-   - Filler word detection
-   - Argument structure evaluation
-   - Word choice recommendations
-5. **Track Progress**: Compare scores over time to see improvement
-
-## Scoring System
-
-### Score Breakdown (out of 100)
-- **Pace Score (25 points)**: Based on words per minute (optimal: 120-160 WPM)
-- **Clarity Score (25 points)**: Based on filler word rate (lower is better)
-- **Structure Score (25 points)**: Based on logical flow and organization
-- **Vocabulary Score (25 points)**: Based on word choice richness
-
-### Score Interpretation
-- **80-100**: Excellent - Professional-level speaking
-- **60-79**: Good - Solid fundamentals, minor improvements needed
-- **40-59**: Fair - Several areas need attention
-- **0-39**: Needs Work - Significant practice required
-
-## API Endpoints
-
-### Upload Speech
-```
-POST /api/speech/upload
-Content-Type: multipart/form-data
-Body: file (audio file)
-```
-
-### Start Analysis
-```
-POST /api/speech/analyze/{analysis_id}?ai_provider=gemini
-```
-
-### Check Status
-```
-GET /api/speech/status/{analysis_id}
-```
-
-### Get History
-```
-GET /api/speech/history
-```
-
-## Configuration
-
-### Environment Variables
-
-Create a `.env` file in the `backend` directory:
-
-```env
-# Required: At least one API key
-GEMINI_API_KEY=your_key_here
-OPENAI_API_KEY=your_key_here
-ANTHROPIC_API_KEY=your_key_here
-
-# Optional
-DEFAULT_AI_PROVIDER=gemini
-GEMINI_MODEL=gemini-pro
-OPENAI_MODEL=gpt-4-turbo-preview
-ANTHROPIC_MODEL=claude-3-opus-20240229
-```
-
-### Command Line Options
-
-Start the backend with custom settings:
-
-**Using npm scripts (recommended):**
-```bash
-npm start                    # Default: Gemini on port 8000
-npm run dev:gemini          # Gemini
-npm run dev:openai          # OpenAI GPT
-npm run dev:claude          # Anthropic Claude
-```
-
-**Using Python directly:**
-```bash
-python main.py --provider gemini --port 8000 --host 0.0.0.0
-```
-
-## Architecture
-
-For detailed architecture information, see [ARCHITECTURE.md](ARCHITECTURE.md).
+This is a working tool that I use for my own debate practice. The core features work reliably, but there's room for improvement in error handling and the UI. It does what I built it to do—give useful feedback on practice speeches.
 
 ## Contributing
 
-We welcome contributions! Please read [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on how to get started.
-
-### Quick Contribution Steps
-
-1. **Fork** the repository
-2. **Create** a feature branch (`git checkout -b feature/amazing-feature`)
-3. **Make** your changes with clear commit messages
-4. **Add** tests for new functionality
-5. **Submit** a pull request with a description of changes
-
-### Code Standards
-
-- **Python**: Follow [PEP 8](https://pep8.org/) with [Black](https://github.com/psf/black) formatting
-- **TypeScript**: Follow [ESLint](https://eslint.org/) config in `frontend/`
-- **Documentation**: Keep README.md and QUICKSTART.md updated
-- **Tests**: Add tests for new features
+If you find bugs or have suggestions, feel free to open an issue. I'm continuing to learn and improve this project.
 
 ## License
 
-MIT License - see [LICENSE](LICENSE) file for details
-
-## Support
-
-For issues, questions, or contributions:
-- 📝 **Issues**: [GitHub Issues](https://github.com/arjvid805/debate-speech-coach/issues)
-- 💬 **Discussions**: [GitHub Discussions](https://github.com/arjvid805/debate-speech-coach/discussions)
-- 🤝 **Contributing**: See [CONTRIBUTING.md](CONTRIBUTING.md)
-
-## Acknowledgments
-
-- Built with [FastAPI](https://fastapi.tiangolo.com/)
-- Powered by [Google Gemini](https://ai.google.dev/), [OpenAI](https://openai.com/), and [Anthropic](https://www.anthropic.com/)
-- Frontend with [React](https://react.dev/) and [Tailwind CSS](https://tailwindcss.com/)
-
----
-
-**Made with ❤️ for better public speaking**
+MIT License
